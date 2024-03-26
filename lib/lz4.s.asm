@@ -17,18 +17,17 @@
                   eor    #$ff
                   adc    dest
                   sta    src
-                  tya
-                  php
+
                   jsr    get_byte
-                  plp
-                  bne    not_done
-                  tay
-                  beq    unlz4_done
-.not_done         eor    #$ff
+                  tax
+                  eor    #$ff
                   adc    dest+1
                   sta    src+1
-                                            
-                  lda    #$ff
+                  tya
+                  bne    not_done
+                  txa
+                  beq    unlz4_done
+.not_done         lda    #$ff
 token             =      *-1
                   and    #$0f
                   adc    #$03                            
